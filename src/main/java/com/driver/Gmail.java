@@ -9,6 +9,8 @@ public class Gmail extends Email {
     //Inbox: Stores mails. Each mail has date (Date), sender (String), message (String). It is guaranteed that message is distinct for all mails.
     //Trash: Stores mails. Each mail has date (Date), sender (String), message (String)
     public Gmail(String emailId, int inboxCapacity) {
+        this.inboxCapacity=inboxCapacity;
+        this.emailId=emailId;
 
     }
 
@@ -61,5 +63,6 @@ public class Gmail extends Email {
 
     public int getInboxCapacity() {
         // Return the maximum number of mails that can be stored in the inbox
+        return this.inboxCapacity;
     }
 }
