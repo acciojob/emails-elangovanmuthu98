@@ -9,6 +9,10 @@ public class Email {
         this.emailId = emailId;
         this.password = "Accio@123";
     }
+    public Email(String emailId,String password)
+    {
+        this.emailId=emailId;
+    }
 
     public String getEmailId() {
         return emailId;
