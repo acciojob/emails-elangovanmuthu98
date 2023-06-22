@@ -2,16 +2,12 @@ package com.driver;
 
 public class Email {
 
-    private String emailId;
+     private String emailId;
     private String password;
 
     public Email(String emailId){
         this.emailId = emailId;
         this.password = "Accio@123";
-    }
-    public Email(String emailId,String password)
-    {
-        this.emailId=emailId;
     }
 
     public String getEmailId() {
@@ -29,29 +25,47 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
-        if(oldPassword!=this.password) return;
-        if(newPasdword.length()<8) return;
-       // boolean cha=false;
-        boolean uppercase=false;
-        boolean lowercase=false;
-        boolean digit=false;
-        boolean schar=false;
-        for(int i=0;i<newPassword.length();i++)
-        {
-            if(newPassword.charAt(i)>=33 && newPassword.charAt(i)<=47 || newPassword.charAt(i)>=58 && newPassword.charAt(i)<=64 || 
-              newPassword.charAt(i)>=91 && newPassword.charAt(i)<=96 || newPassword.charAt(i)>=123 && newPassword.charAt(i)<=126)
-            {
-                schar=true;
+
+        if(oldPassword.equals(password)){
+            if(isValid(newPassword)){
+                System.out.println("Password changed successfully!");
+                this.password = newPassword;
             }
-            if(newPassword.charAt(i)>=65 && newPassword.charAt(i)<=90) uppercase=true;
-            if(newPassword.charAt(i)>=97 && newPassword.charAt(i)<=122) lowercase=true;
-            if(newPassword.charAt(i)>=48 && newPassword.charAt(i)<=57) digit=true;
+            else{
+                System.out.println("The new password is not valid!");
+            }
         }
-        if(schar && uppercase && lowercase && digit) 
-        {
-            this.password=newPassword;
+        else{
+            System.out.println("The given password does not match current password!");
         }
-            
-        
+    }
+
+    private Boolean isValid(String password){
+        Boolean capitalLetter = false;
+        Boolean smallLetter = false;
+        Boolean digit = false;
+        Boolean specialCharacter = false;
+
+        if(password.length() < 8){
+            return false;
+        }
+
+        for(int i = 0; i<password.length(); i++){
+            char ch = password.charAt(i);
+            if((ch >= 'A') && (ch <= 'Z')){
+                capitalLetter = true;
+            }
+            else if((ch >= 'a') && (ch <= 'z')){
+                smallLetter = true;
+            }
+            else if((ch >= '0') && (ch <= '9')){
+                digit = true;
+            }
+            else specialCharacter = true;
+        }
+
+        if(capitalLetter && smallLetter && digit && specialCharacter)
+            return true;
+        return false;
     }
 }
